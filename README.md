@@ -22,15 +22,19 @@ your system.*
 
 ## Goal
 
-In this tutorial, you will be looking for a word with 22 characters:
+In this tutorial, you will be looking for a sentece containing 17 characters:
 
-![](solution.png)
+
+Solution:
+```
+___________ ______
+```
 
 All characters are hidden in the exercises below.
 
 ## Preparations
 
-* clone the repository or download the code as a ZIP file
+* clone the repository using git
 * locate the  `exercises/` folder
 * open a `bash` terminal
 
@@ -69,6 +73,17 @@ or go back to your home folder:
 ``` {.sourceCode .bash}
 cd
 ```
+you can also use the \~ character to refer to you home directory:
+
+``` {.sourceCode .bash}
+cd ~
+```
+
+Additionaly, you can print the absolute path of your current directory using
+
+``` {.sourceCode .bash}
+pwd
+```
 
 ### 1.2. Show a hidden file
 
@@ -84,15 +99,36 @@ in a hidden file.
 
 ### 1.3. Execute a program
 
-Use cd .. to go back to the directory `exercise_1/directoryB/`. When
-listing its contents, you should see a **shell script file**
-`program.sh`. To find the **third character**, you need to execute the
-program. On bash, this is done by typing source and the name of the
+Use cd .. to go back to the directory `exercise_1/directoryB/`. 
+To find the **third character**, you need to execute the
+program. On bash, this is done by typing 'source' and the name of the
 program:
 
 ``` {.sourceCode .bash}
 source program.sh
 ```
+
+You can run a bash script also by using the ./ operator
+
+``` {.sourceCode .bash}
+./program.sh
+```
+
+What? It does not work? You can use the ./ operator only on executable files!
+Add executable permisions to program.sh, then run it using ./
+
+``` {.sourceCode .bash}
+chmod +x program.sh
+```
+
++x means "add executable permissions".
+
+Did you know? You can run multiple commands sequentially using the ; operator
+
+``` {.sourceCode .bash}
+chmod +x program.sh ; ./program.sh
+```
+
 
 ### 1.4. Find out how big a file is
 
@@ -123,6 +159,23 @@ few characters. Unix tries to guess what you are typing.
 
 </div>
 
+### 1.5. Creating files
+
+Did you know? You can use the 'touch' command to update the modification time of files.
+
+Run the following command to observe the effect of touch:
+
+``` {.sourceCode .bash}
+ls -l text_file.txt ; touch text_file.txt ; ls -l text_file.txt
+```
+
+If the file you are touching does not exists, 'touch' will create it. The following commands creates
+the file new\_file.txt
+
+``` {.sourceCode .bash}
+touch new_file.txt
+```
+
 ----
 
 ## 2. Edit text files
@@ -130,32 +183,31 @@ few characters. Unix tries to guess what you are typing.
 Please use `cd ..` to go back to the top directory of the tutorial
 material. Then, change to the directory `exercise_2`.
 
-### 2.1. See what is in a text file
+### 2.1. See the content of a text file
 
 In the directory *exercise\_2/*, you will find a text file
 *solution\_2.1.txt*. The **fifth character** is inside that file. To see
 its contents, use the command
 
 ``` {.sourceCode .bash}
+cat <filename>
+```
+
+You can also use the command 'less' to view the content of a file in a minimal text browser
+
+``` {.sourceCode .bash}
 less <filename>
 ```
+
+Press 'q' to exit.
 
 ### 2.2. Edit text files
 
 To get **character number six**, you will need to create a text file in
-the `exercise_2` directory. On Ubuntu, you can do this using the editor
-`nano`. You can start it typing the name of the program, or
+the `exercise_2` directory. Use touch.
 
-``` {.sourceCode .bash}
-nano <filename>
-```
-
-**To exit nano, type Ctrl-X**
-
-Create a text file with the characters you have found so far.
-
-The **sixth character** is the one you need to press to save a file in
-`nano`.
+Fill text file with the characters you have found so far.
+You can do that by opening a text editor live VSCode or Vim.
 
 <div class="admonition hint">
 
@@ -177,7 +229,7 @@ Please go to the directory exercise\_3.
 
 ### 3.1. Create a directory and copy a file to it.
 
-To find **characters seven and eight**, you need to create a
+To find **characters six, seven and eight**, you need to create a
 subdirectory named *solution* in `exercise_3/` and copy the files from
 the `part1/` and `part2/` folders into it.
 
@@ -194,6 +246,19 @@ cp <filename from> <filename to>
 ```
 
 Type `ls -l solution/*` afterwards to see the solution.
+
+
+
+Did you know? Instead of copying, you can use the 'mv' command to move files and directories.
+The 'mv' command is exspecially usefull to change the name of files or directories
+
+
+``` {.sourceCode .bash}
+mv <path to filename> <new path to new filename>
+```
+
+Use the command to move the directory 'solution' to you home, change the name of the directory to 'toBeRemoved'
+
 
 ### 3.2. Removing files
 
@@ -256,8 +321,7 @@ provides the command
 diff <filename1> <filename2>
 ```
 
-Of course, you can look at the text first using `less` or `nano`. The
-**11th character** of the solution is the single character in which the
+The **11th character** of the solution is the single character in which the
 two files differ.
 
 ### 4.2. Sorting a text file
@@ -266,26 +330,41 @@ Unix has a small program to sort text files alphabetically. It is called
 by
 
 ``` {.sourceCode .bash}
-less <filename> | sort
+cat <filename> | sort
 ```
 
-The symbol '|' is called a pipe and is often used to connect Unix
-programs to each other. The **12th character** of the solution is the
+The symbol '|' is called a pipe and is often used to connect Unix programs to each other.
+In this case, the output of 'cat' is used as input for 'sort'. The **12th character** of the solution is the
 first character of the last word in the alphabetically sorted file
 elephant.txt.
 
-<div class="admonition hint">
+### 4.3. Redirecting output
 
-To store the sorted lines in a new file, you can add an output file,
-like
+You can use the '>' and '>>' to redirect the output of a command.
+For example, you can use '>' to redirect the output of 'echo' to file.
+'echo' is a simple program that writes a string "\<string\>" to the standard output.
+
 
 ``` {.sourceCode .bash}
-less <filename> | sort > result.txt
+echo "new content" > outOfEcho.txt
 ```
+Use 'cat' to see the content of outOfEcho.txt
+Warning: If outOfEcho.txt does not exist, it will be created; furtheremore, if outOfEcho.txt exists, its content will be erased!
 
+You can use '>>' to append to the end of a file without erasing its content:
+
+``` {.sourceCode .bash}
+echo "new appended content" >> outOfEcho.txt
+```
 </div>
 
-### 4.3. Finding words in a text file
+After running the previose two commands. The **13th character** of the solution is the letter of the alfabet corresponding to the
+number of words in outOfEcho.txt
+
+
+
+
+### 4.4. Finding words in a text file
 
 To look for specific words in a text file, use the command
 
@@ -296,7 +375,7 @@ grep <word> <filename>
 It produces all lines from the given file that contain the given word.
 The `grep` command is very powerful and can handle Regular Expressions.
 
-To find the **13th character**, search for the word **fire** in the file
+To find the **14th character**, search for the word **fire** in the file
 `datascience.txt` and take the **first** character of the output.
 
 <div class="admonition hint">
@@ -306,164 +385,13 @@ filename.
 
 </div>
 
-<div class="admonition warning">
-
-The last two exercises may not work on Git Bash.
-
-</div>
-
 ----
 
-## 5. Unzip files
+## 5. Command-line tools
 
-Please go to the directory exercise\_5.
+The following can be done in any directory.
 
-### 5.1. unzipping archives
-
-Unzipping compressed files is a very basic and important task. On Unix,
-you often encounter WinZip archives, .tar archives and .gz compressed
-files. For unpacking Win zip files, use
-
-``` {.sourceCode .bash}
-unzip <filename>
-```
-
-for .tar and .tar.gz files
-
-``` {.sourceCode .bash}
-tar -xf <filename>
-```
-
-and for .gz files,
-
-``` {.sourceCode .bash}
-gunzip <filename>
-```
-
-The **14th and 15th character** of the solution are in a multiply
-wrapped archive in the exercise\_5 directory.
-
-<div class="admonition hint">
-
-To pack a directory and everything within, you can use the command
-
-``` {.sourceCode .bash}
-tar -cf backup.tar <directory>
-```
-
-To subsequently compress it, use
-
-``` {.sourceCode .bash}
-gzip backup.tar
-```
-
-</div>
-
-----
-
-## 6. Command-line tools
-
-Please go to the directory `exercise_6`.
-
-### 6.1. Changing file access rights
-
-Each file on Unix has separate permissions for reading 'r', writing 'w',
-and executing 'x'. Displaying them with:
-
-``` {.sourceCode .bash}
-ls -l
-```
-
-There is one triplet of permissions for the owner of the file owner, one
-triplet for a group of users, and one for all others. The `chmod`
-command allows to change these permissions, e.g.
-
-``` {.sourceCode .bash}
-chmod a+x <filename>
-```
-
-grants all users the permission to execute a file, while chmod u-w
-forbids the current user (oneself) to write to the file (thereby
-protecting it from being deleted accidentally).
-
-To see **characters 16+17** of the solution, make the program
-`permissions.sh` executable. Then execute it with:
-
-``` {.sourceCode .bash}
-./permissions.sh
-```
-
-<div class="admonition hint">
-
-You can grant permissions for a whole directory tree using
-
-``` {.sourceCode .bash}
-chmod -R a+x <directory>
-```
-
-</div>
-
-### 6.2. How much disk space have I left?
-
-To find out, how much disk space you have left, you can use the command
-
-``` {.sourceCode .bash}
-df
-```
-
-`df` lists all hard drive partitions, CD-ROMs, pendrives and some
-logical partitions Unix uses. All numbers are given in kilobyte (1000
-byte or one 1000000th GB).
-
-To obtain the **18th character**, check out the version of the `df`
-program. Find out how to do that with:
-
-``` {.sourceCode .bash}
-df --help
-```
-
-The solution is the last character of the first authors' first name.
-
-### 6.3. Set an environment variable
-
-To install some programs, it is necessary to set so-called environment
-variables. These can be set using the command
-
-``` {.sourceCode .bash}
-export <variable-name>=<value>
-```
-
-You can see all variables by the command
-
-``` {.sourceCode .bash}
-env
-```
-
-To obtain the **19th character**, you need to use `export` to set the
-variable *GIVEME* to the value **SOLUTION**.
-
-``` {.sourceCode .bash}
-echo $GIVEME
-```
-
-Find out the **characters position in the alphabet** with:
-
-``` {.sourceCode .bash}
-echo $GIVEME | wc -c
-```
-
-<div class="admonition hint">
-
-By default, changes to environment variables only affect the current
-terminal.
-
-If you want to set environment variables for each console window, write
-the export command to the file `.bashrc` in your home directory (it is a
-hidden file).
-
-</div>
-
-### 6.4. Check whether you have internet
+### 5.1. Check whether you have internet
 
 The easiest way to check from the Unix command line whether the internet
 connection works, is to send a request to a known server (e.g.
@@ -481,14 +409,60 @@ program
 ./check_ping
 ```
 
-The **20th character** is the `ping` option that sets the maximum number
+The **15th character** is the `ping` option that sets the maximum number
 of requests sent. Check the documentation with:
 
 ``` {.sourceCode .bash}
 man ping
 ```
 
-### 6.5. Managing processes
+### 5.2. Set an environment variable
+
+To install some programs, it is necessary to set so-called environment
+variables. These can be set using the command
+
+``` {.sourceCode .bash}
+export <variable-name>=<value>
+```
+
+You can see all variables by the command
+
+``` {.sourceCode .bash}
+env
+```
+
+To obtain the **16th character**, you need to use `export` to set the
+variable *GIVEME* to the value **UNCHARACTERISTICALLY**.
+
+``` {.sourceCode .bash}
+echo $GIVEME
+```
+
+Find out the **character position in the alphabet** with:
+
+``` {.sourceCode .bash}
+echo $GIVEME | wc -c
+```
+
+Use the following command to understand the meaning of 'wc -c'
+
+``` {.sourceCode .bash}
+man wc
+```
+
+<div class="admonition hint">
+
+By default, changes to environment variables only affect the current
+terminal.
+
+If you want to set environment variables for each console window, write
+the export command to the file `.bashrc` in your home directory (it is a
+hidden file).
+
+</div>
+
+
+### 5.3. Managing processes
 
 To see what programs are running on your machine, type
 
@@ -501,13 +475,11 @@ them by the CPU time they are using, *Shift+M* by the amount of memory
 they are using (if you don't see any program consuming lots of memory,
 start a web browser). Quit `top` by pressing *q*.
 
-The **last two characters** of the solution are the first two characters
-of the second word in the line containing the column labels.
+The **last character** of the solution is the second character of the second word in the line containing the column labels.
 
 <div class="admonition hint">
 
-If you want to get rid of one of the programs you started (e.g. because
-it crashed), you can do so by typing
+If you want to get rid of one of the programs you started, you can do so by typing
 
 ``` {.sourceCode .bash}
 kill -s 9 <pid>
@@ -515,9 +487,19 @@ kill -s 9 <pid>
 
 </div>
 
+The 'kill' command sends a signal to the process with the specified \<pid\>.
+9 specifies that you want to send a termination signal.
+
+
 You find the pid number in the first column of the *top* output. Of
 course, you may only interrupt your own programs, not those owned by
 *root*, the system administrator.
+
+You can also show the lists of processes using the 'ps' command:
+``` {.sourceCode .bash}
+ps a
+```
+The 'a' option means 'all'.
 
 ----
 
@@ -528,20 +510,10 @@ course, you may only interrupt your own programs, not those owned by
 This tutorial is published under the Creative Commons Attribution
 Share-alike License 4.0
 
-You can find the full sources on
-[<https://github.com/krother/bash_tutorial>](https://github.com/krother/bash_tutorial).
+Forked from [<https://github.com/krother/bash_tutorial>](https://github.com/krother/bash_tutorial).
 
-### Acknowledgements
+Extended by Samuele Germiniani.
 
-I thank Janusz M. Bujnicki, Allegra Via, Pedro Fernandes and Joachim
-Jacob for their help with testing and reviewing the material. Further
-thanks go to the German Academic Exchange Service (DAAD) for financial
-support.
+### Solution
 
-### Contact
-
-Dr. Kristian Rother
-
-[krother@academis.eu](krother@academis.eu)
-
-[www.academis.eu](www.academis.eu)
+APTENODYTES TEACUP

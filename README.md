@@ -22,7 +22,7 @@ your system.*
 
 ## Goal
 
-In this tutorial, you will be looking for a sentece containing 17 characters:
+In this tutorial, you will be looking for a sentence containing 17 characters.
 
 
 Solution:
@@ -201,13 +201,11 @@ less <filename>
 
 Press 'q' to exit.
 
-### 2.2. Edit text files
+### 2.2. Edit text files and manual
 
-To get **character number six**, you will need to create a text file in
-the `exercise_2` directory. Use touch.
-
+You can edit files by opening a text editor such as VSCode or Vim.
 Fill text file with the characters you have found so far.
-You can do that by opening a text editor live VSCode or Vim.
+
 
 <div class="admonition hint">
 
@@ -349,6 +347,7 @@ For example, you can use '>' to redirect the output of 'echo' to file.
 echo "new content" > outOfEcho.txt
 ```
 Use 'cat' to see the content of outOfEcho.txt
+
 Warning: If outOfEcho.txt does not exist, it will be created; furtheremore, if outOfEcho.txt exists, its content will be erased!
 
 You can use '>>' to append to the end of a file without erasing its content:

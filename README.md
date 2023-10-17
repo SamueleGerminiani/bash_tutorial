@@ -401,12 +401,7 @@ ping <web address>
 ```
 
 The command reports, how long a message takes back and forth to the
-given server. To interrupt the messages, press Ctrl+C. You can use the
-program
-
-``` {.sourceCode .bash}
-./check_ping
-```
+given server. To interrupt the messages, press Ctrl+C.
 
 The **15th character** is the `ping` option that sets the maximum number
 of requests sent. Check the documentation with:

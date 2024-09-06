@@ -97,18 +97,18 @@ ls -a
 The **second character**, is in the same directory as the first one, but
 in a hidden file.
 
-### 1.3. Execute a program
+### 1.3. Execute a bash script 
 
 Use cd .. to go back to the directory `exercise_1/directoryB/`. 
 To find the **third character**, you need to execute the
-program. On bash, this is done by typing 'source' and the name of the
+bash script. On bash, this is done by typing 'source' and the name of the
 program:
 
 ``` {.sourceCode .bash}
 source program.sh
 ```
 
-You can run a bash script also by using the ./ operator
+You can run a bash script by using the ./ operator
 
 ``` {.sourceCode .bash}
 ./program.sh
@@ -162,15 +162,9 @@ few characters. Unix tries to guess what you are typing.
 ### 1.5. Creating files
 
 Did you know? You can use the 'touch' command to update the modification time of files.
-
-Run the following command to observe the effect of touch:
-
-``` {.sourceCode .bash}
-ls -l text_file.txt ; touch text_file.txt ; ls -l text_file.txt
-```
-
 If the file you are touching does not exists, 'touch' will create it. The following commands creates
 the file new\_file.txt
+Run the following command to observe the effect of touch:
 
 ``` {.sourceCode .bash}
 touch new_file.txt
@@ -248,7 +242,7 @@ Type `ls -l solution/*` afterwards to see the solution.
 
 
 Did you know? Instead of copying, you can use the 'mv' command to move files and directories.
-The 'mv' command is exspecially usefull to change the name of files or directories
+The 'mv' command is especially useful to change the name of files or directories
 
 
 ``` {.sourceCode .bash}
@@ -289,6 +283,8 @@ rm -r <directory name>
 ```
 
 deletes a directory and everything in it.
+
+Use the rm -r command to remove the 'toBeRemoved' directory in your home.
 
 </div>
 
@@ -348,7 +344,7 @@ echo "new content" > outOfEcho.txt
 ```
 Use 'cat' to see the content of outOfEcho.txt
 
-Warning: If outOfEcho.txt does not exist, it will be created; furtheremore, if outOfEcho.txt exists, its content will be erased!
+Warning: If outOfEcho.txt does not exist, it will be created; furthermore, if outOfEcho.txt exists, its content will be erased!
 
 You can use '>>' to append to the end of a file without erasing its content:
 
@@ -357,7 +353,7 @@ echo "new appended content" >> outOfEcho.txt
 ```
 </div>
 
-After running the previose two commands. The **13th character** of the solution is the letter of the alfabet corresponding to the
+After running the previous two commands. The **13th character** of the solution is the letter of the alphabet corresponding to the
 number of words in outOfEcho.txt
 
 
@@ -404,7 +400,7 @@ The command reports, how long a message takes back and forth to the
 given server. To interrupt the messages, press Ctrl+C.
 
 The **15th character** is the `ping` option that sets the maximum number
-of requests sent. Check the documentation with:
+of requests to send before terminating the program. Check the documentation with:
 
 ``` {.sourceCode .bash}
 man ping
@@ -469,7 +465,7 @@ them by the CPU time they are using, *Shift+M* by the amount of memory
 they are using (if you don't see any program consuming lots of memory,
 start a web browser). Quit `top` by pressing *q*.
 
-The **last character** of the solution is the second character of the second word in the line containing the column labels.
+The **last character** of the solution is the first character of the first word in the line containing the column labels.
 
 <div class="admonition hint">
 
@@ -506,7 +502,7 @@ Share-alike License 4.0
 
 Forked from [<https://github.com/krother/bash_tutorial>](https://github.com/krother/bash_tutorial).
 
-Extended by Samuele Germiniani.
+Extended by Samuele Germiniani 2024.
 
 ### Solution
 

@@ -14,15 +14,15 @@ systems or know a few commands but would like to know more, this tutorial is for
 
 ### Prerequisites
 
-*This tutorial was prepared for Ubuntu Linux, but it works on MacOS,
-Cygwin and the Git bash as well, given that Python 3 is installed on
-your system.*
+*This tutorial requires **Linux** (it was prepared for Ubuntu) or **macOS**.
+Windows (Cygwin, Git Bash, WSL) is not supported: some exercises may give
+different results there.*
 
 ----
 
 ## Goal
 
-In this tutorial, you will be looking for a sentence containing 17 characters.
+In this tutorial, you will be looking for a sentence made of two words, with 17 characters in total.
 
 
 Solution:
@@ -34,11 +34,17 @@ All characters are hidden in the exercises below.
 
 ## Preparations
 
+* open a `bash` terminal (on macOS the default shell is `zsh`: type `bash` to start bash)
 * clone the repository using git
-* locate the  `exercises/` folder
-* open a `bash` terminal
+* locate the `exercises/` folder
 
-![](preparations.png)
+``` {.sourceCode .bash}
+git clone https://github.com/SamueleGerminiani/bash_tutorial.git
+cd bash_tutorial/exercises
+ls
+```
+
+You should see the folders `exercise_1` to `exercise_4` and two PDF manuals.
 
 ----
 
@@ -47,7 +53,7 @@ All characters are hidden in the exercises below.
 
 ### 1.1. Navigating directories
 
-The **first character** is hidden in a file somewhere in the *exercise1*
+The **first character** is hidden in a file somewhere in the *exercise\_1*
 directory tree. Use the commands
 
 ``` {.sourceCode .bash}
@@ -73,13 +79,13 @@ or go back to your home folder:
 ``` {.sourceCode .bash}
 cd
 ```
-you can also use the \~ character to refer to you home directory:
+you can also use the \~ character to refer to your home directory:
 
 ``` {.sourceCode .bash}
 cd ~
 ```
 
-Additionaly, you can print the absolute path of your current directory using
+Additionally, you can print the absolute path of your current directory using
 
 ``` {.sourceCode .bash}
 pwd
@@ -94,7 +100,7 @@ command
 ls -a
 ```
 
-The **second character**, is in the same directory as the first one, but
+The **second character** is in the same directory as the first one, but
 in a hidden file.
 
 ### 1.3. Execute a bash script 
@@ -115,7 +121,7 @@ You can run a bash script by using the ./ operator
 ```
 
 What? It does not work? You can use the ./ operator only on executable files!
-Add executable permisions to program.sh, then run it using ./
+Add executable permissions to program.sh, then run it using ./
 
 ``` {.sourceCode .bash}
 chmod +x program.sh
@@ -162,9 +168,8 @@ few characters. Unix tries to guess what you are typing.
 ### 1.5. Creating files
 
 Did you know? You can use the 'touch' command to update the modification time of files.
-If the file you are touching does not exists, 'touch' will create it. The following commands creates
-the file new\_file.txt
-Run the following command to observe the effect of touch:
+If the file you are touching does not exist, 'touch' will create it.
+Run the following command to create the file new\_file.txt, then use `ls -l` to observe the effect of touch:
 
 ``` {.sourceCode .bash}
 touch new_file.txt
@@ -174,8 +179,8 @@ touch new_file.txt
 
 ## 2. Edit text files
 
-Please use `cd ..` to go back to the top directory of the tutorial
-material. Then, change to the directory `exercise_2`.
+Please use `cd ../..` to go back to the `exercises/` directory of the tutorial
+material (`..` means "one level up", so `../..` goes up two levels). Then, change to the directory `exercise_2`.
 
 ### 2.1. See the content of a text file
 
@@ -197,8 +202,9 @@ Press 'q' to exit.
 
 ### 2.2. Edit text files and manual
 
-You can edit files by opening a text editor such as VSCode or Vim.
-Fill text file with the characters you have found so far.
+You can edit files by opening a text editor such as nano, Vim or VSCode.
+Create a text file named `solution.txt` (e.g. with `nano solution.txt`) and write in it
+the characters you have found so far. In nano, press *Ctrl+O* and *Enter* to save, and *Ctrl+X* to exit.
 
 
 <div class="admonition hint">
@@ -249,7 +255,7 @@ The 'mv' command is especially useful to change the name of files or directories
 mv <path to filename> <new path to new filename>
 ```
 
-Use the command to move the directory 'solution' to you home, change the name of the directory to 'toBeRemoved'
+Use the command to move the directory 'solution' to your home and change its name of the directory to 'toBeRemoved'
 
 
 ### 3.2. Removing files
@@ -261,7 +267,7 @@ so, use the command:
 rm <filename>
 ```
 
-Also, there are more files to be deleted in the *data* directory. To
+There are several files containing a `Y` in the *data* directory. To
 remove more than one file at once, you can use `*` as a wildcard, i.e.
 `rm ju*` will delete all of `junk.txt, juniper.txt` and `june.docx`.
 
@@ -305,10 +311,10 @@ idea after learning this command.
 
 Please go to the directory exercise\_4.
 
-### 4.1. comparing two files
+### 4.1. Comparing two files
 
 There are two different versions of a quote, `ai.txt`, and
-`artificial_intelligence.txt`. To find out, how they differ, Unix
+`artificial_intelligence.txt`. To find out how they differ, Unix
 provides the command
 
 ``` {.sourceCode .bash}
@@ -324,19 +330,26 @@ Unix has a small program to sort text files alphabetically. It is called
 by
 
 ``` {.sourceCode .bash}
-cat <filename> | sort
+cat <filename> | LC_ALL=C sort
 ```
 
 The symbol '|' is called a pipe and is often used to connect Unix programs to each other.
-In this case, the output of 'cat' is used as input for 'sort'. The **12th character** of the solution is the
+In this case, the output of 'cat' is used as input for 'sort'.
+
+Writing `LC_ALL=C` before a command sets an environment variable for that command only.
+Here it tells `sort` to use the plain ASCII order (all uppercase letters before
+all lowercase letters), so that you get the same result on every computer. Without it,
+`sort` follows the language settings of your system, and the order may differ.
+
+The **12th character** of the solution is the
 first character of the last word in the alphabetically sorted file
 elephant.txt.
 
 ### 4.3. Redirecting output
 
 You can use the '>' and '>>' to redirect the output of a command.
-For example, you can use '>' to redirect the output of 'echo' to file.
-'echo' is a simple program that writes a string "\<string\>" to the standard output.
+For example, you can use '>' to redirect the output of 'echo' to a file.
+'echo' is a simple program that writes the text you give it to the standard output (the terminal).
 
 
 ``` {.sourceCode .bash}
@@ -351,10 +364,9 @@ You can use '>>' to append to the end of a file without erasing its content:
 ``` {.sourceCode .bash}
 echo "new appended content" >> outOfEcho.txt
 ```
-</div>
 
-After running the previous two commands. The **13th character** of the solution is the letter of the alphabet corresponding to the
-number of words in outOfEcho.txt
+After running the previous two commands, the **13th character** of the solution is the letter of the alphabet corresponding to the
+number of words in outOfEcho.txt (e.g. 1 = A, 2 = B, ...).
 
 
 
@@ -390,13 +402,13 @@ The following can be done in any directory.
 
 The easiest way to check from the Unix command line whether the internet
 connection works, is to send a request to a known server (e.g.
-www.spiced-academy.com) using the command
+www.google.com) using the command
 
 ``` {.sourceCode .bash}
 ping <web address>
 ```
 
-The command reports, how long a message takes back and forth to the
+The command reports how long a message takes back and forth to the
 given server. To interrupt the messages, press Ctrl+C.
 
 The **15th character** is the `ping` option that sets the maximum number
@@ -447,7 +459,7 @@ terminal.
 
 If you want to set environment variables for each console window, write
 the export command to the file `.bashrc` in your home directory (it is a
-hidden file).
+hidden file). On macOS, if you use the default `zsh` shell, the file is `.zshrc`.
 
 </div>
 
@@ -460,10 +472,15 @@ To see what programs are running on your machine, type
 top
 ```
 
-It displays you a list of all currently active programs. *Shift+P* sorts
-them by the CPU time they are using, *Shift+M* by the amount of memory
-they are using (if you don't see any program consuming lots of memory,
-start a web browser). Quit `top` by pressing *q*.
+It displays you a list of all currently active programs. You can sort
+them by the CPU they are using, or by the amount of memory they are using
+(if you don't see any program consuming lots of memory, start a web browser):
+
+* on **Linux**: press *Shift+P* to sort by CPU usage, *Shift+M* to sort by memory usage
+* on **macOS**: press *o*, type `cpu` (or `mem`) and press *Enter*
+
+You can also choose the sorting when starting `top`: `top -o %CPU` on Linux,
+`top -o cpu` on macOS. Quit `top` by pressing *q*.
 
 The **last character** of the solution is the first character of the first word in the line containing the column labels.
 
@@ -478,7 +495,10 @@ kill -s 9 <pid>
 </div>
 
 The 'kill' command sends a signal to the process with the specified \<pid\>.
-9 specifies that you want to send a termination signal.
+9 is the *SIGKILL* signal: it forces the process to stop immediately, and the
+process cannot ignore it or clean up before exiting. A gentler option is
+`kill <pid>` (without `-s 9`), which sends the *SIGTERM* signal (number 15) and asks
+the process to terminate; try it first, and use `-s 9` only if the process does not react.
 
 
 You find the pid number in the first column of the *top* output. Of
@@ -487,9 +507,11 @@ course, you may only interrupt your own programs, not those owned by
 
 You can also show the lists of processes using the 'ps' command:
 ``` {.sourceCode .bash}
-ps a
+ps aux
 ```
-The 'a' option means 'all'.
+The 'a' option shows the processes of all users (not only yours), 'u' shows
+additional information such as the owner and the CPU/memory usage, and 'x' also includes
+processes that are not attached to a terminal. Together, they list every process on the system.
 
 ----
 
@@ -506,4 +528,12 @@ Extended by Samuele Germiniani 2024.
 
 ### Solution
 
-APTENODYTES TEACUP
+The solution is hidden so that you don't read it by accident. When you are done,
+check your answer by running this command in the terminal:
+
+``` {.sourceCode .bash}
+echo QVBURU5PRFlURVMgVEVBQ1VQ | base64 --decode ; echo
+```
+
+`base64` is an encoding that turns any text into letters and digits. `--decode` turns it back
+into the original text.

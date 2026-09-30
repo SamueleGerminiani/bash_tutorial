@@ -59,7 +59,7 @@ Level 2: Intermediate
 
 -   Check disk usage with df
 -   Check directory sizes with du
--   List running processes with pwd or top
+-   List running processes with ps or top
 -   Kill a process with kill or xkill
 
 2.5 System administration
@@ -81,7 +81,7 @@ Level 3: Advanced
 -------------------
 
 -   Start a cronjob
--   Configure a service in the /env directory
+-   Configure a service in the /etc directory
 -   Know the differences between Linux distributions
 -   Compile a package from scratch
 -   Load kernel modules or compile a Linux kernel
